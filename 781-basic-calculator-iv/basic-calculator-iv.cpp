@@ -2,9 +2,8 @@ class Solution {
 public:
     vector<string> basicCalculatorIV(string expression, vector<string>& evalvars, vector<int>& evalints) {
         unordered_map<string, int> eval;
-        for (int i = 0; i < evalvars.size(); ++i) {
+        for (int i = 0; i < evalvars.size(); ++i)
             eval[evalvars[i]] = evalints[i];
-        }
 
         Parser parser(expression, eval);
         auto poly = parser.parse();
@@ -38,9 +37,7 @@ private:
                     Poly rhs = parseTerm();
                     if (op == '+') res = add(res, rhs);
                     else res = sub(res, rhs);
-                } else {
-                    break;
-                }
+                } else break;
             }
             return res;
         }
@@ -53,9 +50,7 @@ private:
                     ++pos;
                     Poly rhs = parseFactor();
                     res = mul(res, rhs);
-                } else {
-                    break;
-                }
+                } else break;
             }
             return res;
         }
@@ -128,9 +123,8 @@ private:
         }
 
         sort(terms.begin(), terms.end(), [](const auto& a, const auto& b) {
-            if (a.first.size() != b.first.size()) {
+            if (a.first.size() != b.first.size())
                 return a.first.size() > b.first.size();
-            }
             return a.first < b.first;
         });
 
